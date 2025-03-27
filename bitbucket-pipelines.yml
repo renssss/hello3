@@ -1,0 +1,15 @@
+image: node:16
+
+pipelines:
+  default:
+    - step:
+        name: Build and Package
+        caches:
+          - node
+        script:
+          - npm install
+          - npm run compile
+          - npm install -g @vscode/vsce
+          - vsce package
+        artifacts:
+          - hello-*.vsix
